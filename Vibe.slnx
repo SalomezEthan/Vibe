@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Vibe.Core.Tests/Vibe.Core.Tests.csproj" Id="7a74fd56-e249-4fec-a805-bb65c39d1159" />
   <Project Path="Vibe.Core/Vibe.Core.csproj" Id="a45f54d7-3682-4132-8f8c-f437db900239" />
 </Solution>
