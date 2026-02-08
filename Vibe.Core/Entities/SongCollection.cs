@@ -4,11 +4,13 @@
     {
         readonly List<Song> _songs;
 
-        public SongCollection(IEnumerable<Song> songs)
+        public SongCollection(Guid id, IEnumerable<Song> songs)
         {
             _songs = [.. songs];
+            Id = id;
         }
 
+        public Guid Id { get; } 
         public IReadOnlyCollection<Song> Songs => _songs;
 
         public void AddSong(Song song)

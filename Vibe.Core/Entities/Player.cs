@@ -34,6 +34,12 @@
             PlaybackState = PlaybackState.Paused;
         }
 
+        public void Stop()
+        {
+            EnsureIsNotEmpty();
+            PlaybackState = PlaybackState.Stop;
+        }
+
         public void EnsureIsNotEmpty()
         {
             if (CurrentSong is null)

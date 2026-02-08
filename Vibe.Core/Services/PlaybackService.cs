@@ -3,8 +3,10 @@ using Vibe.Core.Ports;
 
 namespace Vibe.Core.Services
 {
-    public sealed class PlaybackService(Player player, IAudioEngine audio, ISongRepository repo)
+    public sealed class PlaybackService(Player player, IAudioEngine audio, ISongCollectionRepository repo)
     {
+        PlaybackQueue queue = new();
+
         public void Play()
         {
             player.Play();
@@ -17,15 +19,27 @@ namespace Vibe.Core.Services
             audio.Pause();
         }
 
-        public async Task PlaySongAsync(Guid songId)
+        public async Task PlaySongCollection(Guid songCollectionId)
         {
-            var song = await repo.GetSongByIdAsync(songId);
-            
-            player.LoadSong(song);
-            audio.LoadSong(song.Reference);
-            
+            player.Stop();
+            audio.Stop();
+
+            var songCollection = await repo.GetById(songCollectionId);
+            queue = new PlaybackQueue(songCollection.Songs);
+
+            player.LoadSong(queue.CurrentSong);
             player.Play();
-            audio.Play();
+
+            audio.PlaySong(queue.CurrentSong.Reference);
+        }
+
+        public void NextSong()
+        {
+            queue.Next();
+            player.LoadSong(queue.CurrentSong);
+            player.Play();
+
+            audio.PlaySong(queue.CurrentSong.Reference);
         }
     }
 }

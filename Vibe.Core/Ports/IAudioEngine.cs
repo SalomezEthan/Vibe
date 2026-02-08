@@ -2,8 +2,9 @@
 {
     public interface IAudioEngine
     {
-        void LoadSong(string reference);
+        void PlaySong(string reference);
         void Play();
         void Pause();
+        void Stop();
     }
 }
