@@ -1,4 +1,6 @@
-﻿namespace Vibe.Core
+﻿using Vibe.Core.Entities;
+
+namespace Vibe.Core.Ports
 {
     public interface ISongRepository
     {

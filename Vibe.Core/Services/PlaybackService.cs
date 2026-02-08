@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using Vibe.Core.Entities;
+using Vibe.Core.Ports;
 
-namespace Vibe.Core
+namespace Vibe.Core.Services
 {
     public sealed class PlaybackService(Player player, IAudioEngine audio, ISongRepository repo)
     {

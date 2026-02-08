@@ -1,4 +1,4 @@
-﻿namespace Vibe.Core
+﻿namespace Vibe.Core.Ports
 {
     public interface IAudioEngine
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Vibe.Core
+﻿namespace Vibe.Core.Entities
 {
     public class PlaybackQueue
     {

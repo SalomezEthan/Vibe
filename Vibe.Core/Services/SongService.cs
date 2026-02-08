@@ -1,4 +1,6 @@
-﻿namespace Vibe.Core
+﻿using Vibe.Core.Ports;
+
+namespace Vibe.Core.Services
 {
     public sealed class SongService(ISongRepository repo)
     {
