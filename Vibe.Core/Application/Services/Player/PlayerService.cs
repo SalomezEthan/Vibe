@@ -2,10 +2,10 @@
 using Vibe.Core.Application.Ports.Persistence;
 using Vibe.Core.Domain;
 
-namespace Vibe.Core.Application.Services.PlayerServices
+namespace Vibe.Core.Application.Services.Player
 {
     public sealed class PlayerService(
-        Player player, 
+        Domain.Player player, 
         IPlaylistRepository playlistRepo, 
         ISongRepository songRepo, 
         IAudioService audioService

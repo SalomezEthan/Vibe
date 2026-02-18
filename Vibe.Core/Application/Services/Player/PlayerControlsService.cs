@@ -1,9 +1,9 @@
 ﻿using Vibe.Core.Application.Ports;
 using Vibe.Core.Domain;
 
-namespace Vibe.Core.Application.Services.PlayerServices
+namespace Vibe.Core.Application.Services.Player
 {
-    public sealed class PlayerControlsService(Player player, IAudioService audio, IShuffleService shuffle)
+    public sealed class PlayerControlsService(Domain.Player player, IAudioService audio, IShuffleService shuffle)
     {
         public void Play() 
         {

@@ -1,9 +1,9 @@
 ﻿using Vibe.Core.Application.Models;
 using Vibe.Core.Domain;
 
-namespace Vibe.Core.Application.Services.PlayerServices
+namespace Vibe.Core.Application.Services.Player
 {
-    public class PlayerQueryService(Player player)
+    public class PlayerQueryService(Domain.Player player)
     {
         public SongModel GetCurrentSong()
         {

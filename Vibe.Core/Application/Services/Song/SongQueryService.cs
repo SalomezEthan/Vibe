@@ -1,7 +1,7 @@
 ﻿using Vibe.Core.Application.Models;
 using Vibe.Core.Application.Ports.Persistence;
 
-namespace Vibe.Core.Application.Services.SongServices
+namespace Vibe.Core.Application.Services.Song
 {
     public class SongQueryService(ISongRepository songRepository)
     {

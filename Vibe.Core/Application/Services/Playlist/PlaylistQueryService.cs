@@ -1,7 +1,7 @@
 ﻿using Vibe.Core.Application.Models;
 using Vibe.Core.Application.Ports.Persistence;
 
-namespace Vibe.Core.Application.Services.PlaylistServices
+namespace Vibe.Core.Application.Services.Playlist
 {
     public sealed class PlaylistQueryService(IPlaylistRepository repo)
     {

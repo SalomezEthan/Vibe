@@ -1,6 +1,6 @@
 ﻿using Vibe.Core.Application.Ports.Persistence;
 
-namespace Vibe.Core.Application.Services.SongServices
+namespace Vibe.Core.Application.Services.Song
 {
     public class SongEditService(ISongRepository songRepository)
     {
