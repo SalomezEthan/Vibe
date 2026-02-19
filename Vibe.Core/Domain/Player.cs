@@ -32,6 +32,7 @@ namespace Vibe.Core.Domain
         public PlaybackMode PlaybackMode { get; private set; }
         public int Position { get; private set; }
         public float Volume { get; private set; }
+        public IReadOnlyList<Song> History => [.. _history];
         public IReadOnlyList<Song> Songs => _songs;
         public Song CurrentSong => _songs[Position];
         public bool IsEmpty => _songs.Count == 0;
@@ -43,9 +44,14 @@ namespace Vibe.Core.Domain
                 throw new ArgumentException("Le lecteur ne peut charger une liste de chansons vide.");
             }
 
-            _history.Clear();
-            _songs.Clear();
+            ClearPlayer();
             _songs.AddRange(songs);
+        }
+
+        public void ClearPlayer()
+        {
+            _songs.Clear();
+            _history.Clear();
             Position = 0;
         }
 
@@ -93,7 +99,13 @@ namespace Vibe.Core.Domain
         public void MoveToSongById(Guid songId)
         {
             EnsurePlayerIsNotEmpty("Impossible de se déplacer dans une file qui ne contient aucun élément.");
-            Position = _songs.FindIndex(song => song.Id == songId);
+            int pos = _songs.FindIndex(song => song.Id == songId);
+
+            if (pos == -1)
+                throw new ArgumentException("L'élément ne se trouve pas dans la file de lecture.");
+
+            _history.Push(CurrentSong);
+            Position = pos;
         }
 
         void EnsurePlayerIsNotEmpty(string messageIfItIs)
@@ -119,14 +131,6 @@ namespace Vibe.Core.Domain
         public void UpdateRepeatMode(PlaybackMode mode)
         {
             PlaybackMode = mode;
-        }
-
-        public void ClearPlayer()
-        {
-            _songs.Clear();
-            _history.Clear();
-            Position = 0;
-
         }
     }
 }

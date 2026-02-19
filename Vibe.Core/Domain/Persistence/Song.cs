@@ -49,7 +49,7 @@ namespace Vibe.Core.Domain.Persistence
         }
 
         [MemberNotNull(nameof(Artist))]
-        void UpdateArtist(string artist)
+        public void UpdateArtist(string artist)
         {
             artist = artist.Trim();
             
@@ -65,7 +65,7 @@ namespace Vibe.Core.Domain.Persistence
         }
 
         [MemberNotNull(nameof(Duration))]
-        void UpdateDuration(TimeSpan newDuration)
+        public void UpdateDuration(TimeSpan newDuration)
         {
             if (newDuration == TimeSpan.Zero)
             {
