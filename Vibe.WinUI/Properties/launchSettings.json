@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Vibe.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Vibe.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

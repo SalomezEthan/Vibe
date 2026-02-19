@@ -5,4 +5,10 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="Vibe.Core/Vibe.Core.csproj" Id="c9ca763b-5409-465d-98e9-3b1fcc8b620c" />
+  <Project Path="Vibe.WinUI/Vibe.WinUI.csproj" Id="79d09b85-2e57-4ce3-a774-afb8aaa01eb6">
+    <Platform Solution="*|ARM64" Project="ARM64" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+    <Deploy />
+  </Project>
 </Solution>
