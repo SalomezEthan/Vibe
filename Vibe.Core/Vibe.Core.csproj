@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Application\Ports\Gateways\**" />
-    <EmbeddedResource Remove="Application\Ports\Gateways\**" />
-    <None Remove="Application\Ports\Gateways\**" />
-  </ItemGroup>
-
 </Project>
