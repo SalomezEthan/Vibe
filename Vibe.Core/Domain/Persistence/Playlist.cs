@@ -17,6 +17,10 @@ namespace Vibe.Core.Domain.Persistence
             UpdateName(name);
         }
 
+        public Playlist(string name) : this(Guid.NewGuid(), name, [])
+        {
+        }
+
         public Guid Id { get; }
         public string Name { get; private set; }
         public IReadOnlyList<Guid> SongIds => _songIds;

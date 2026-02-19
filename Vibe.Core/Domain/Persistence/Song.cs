@@ -17,6 +17,9 @@ namespace Vibe.Core.Domain.Persistence
             UpdateReference(reference);
         }
 
+        public Song(string title, string artist, TimeSpan duration, string reference)
+        : this(Guid.NewGuid(), title, artist, duration, reference) { }
+
         public Guid Id { get; private set; }
         public string Title { get; private set; }
         public string Artist { get; private set; }
@@ -49,12 +52,7 @@ namespace Vibe.Core.Domain.Persistence
         void UpdateArtist(string artist)
         {
             artist = artist.Trim();
-
-            if (artist.Length == 0)
-            {
-                throw new ArgumentException("L'artiste d'un son ne peut pas être vide.");
-            }
-
+            
             if (artist.Length > MAX_ARTIST_NAME_LENGTH)
             {
                 throw new ArgumentOutOfRangeException(
