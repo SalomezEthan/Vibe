@@ -4,7 +4,7 @@ using Vibe.Core.Domain;
 
 namespace Vibe.Core
 {
-    internal static class CoreCompositionRoot
+    public static class CoreCompositionRoot
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
