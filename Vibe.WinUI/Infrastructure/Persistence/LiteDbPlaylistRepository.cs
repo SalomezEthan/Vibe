@@ -2,6 +2,7 @@
 using LiteDB.Async;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Vibe.Core.Application.Ports.Persistence;
 using Vibe.Core.Domain.Persistence;
@@ -25,7 +26,7 @@ namespace Vibe.WinUI.Infrastructure.Persistence
 
         public async Task<IEnumerable<Playlist>> GetAllAsync()
         {
-            return [.. await _playlists.FindAllAsync()];
+            return await _playlists.FindAllAsync();
         }
 
         public async Task<Playlist> GetById(Guid id)
@@ -36,15 +37,8 @@ namespace Vibe.WinUI.Infrastructure.Persistence
         public async Task<IEnumerable<Song>> GetSongsInPlaylistAsync(Guid playlistId)
         {
             var playlist = await _playlists.FindByIdAsync(playlistId);
-
-            List<Song> songs = [];
-            foreach(var songId in playlist.SongIds)
-            {
-                var song = await _songs.FindByIdAsync(songId);
-                songs.Add(song);
-            }
-
-            return songs;
+            var tasks = playlist.SongIds.Select(songId => _songs.FindByIdAsync(songId));
+            return await Task.WhenAll(tasks);
         }
 
         public async Task UpdateAsync(Playlist playlist)
