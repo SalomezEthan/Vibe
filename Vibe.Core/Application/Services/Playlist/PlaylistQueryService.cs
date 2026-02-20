@@ -8,13 +8,13 @@ namespace Vibe.Core.Application.Services.Playlist
         public async Task<IEnumerable<PlaylistModel>> CollectAllAsync()
         {
             var playlists = await repo.GetAllAsync();
-            return [.. playlists.Select(PlaylistModel.FromEntity)];
+            return playlists.Select(PlaylistModel.FromEntity);
         }
 
         public async Task<IEnumerable<SongModel>> CollectSongsInPlaylist(Guid playlistId)
         {
             var songs = await repo.GetSongsInPlaylistAsync(playlistId);
-            return [.. songs.Select(SongModel.FromEntity)];
+            return songs.Select(SongModel.FromEntity);
         }
     }
 }

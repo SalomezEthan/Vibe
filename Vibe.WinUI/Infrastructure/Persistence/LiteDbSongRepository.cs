@@ -23,7 +23,7 @@ namespace Vibe.WinUI.Infrastructure.Persistence
 
         public async Task<IEnumerable<Song>> GetAllAsync()
         {
-            return [..await _songs.FindAllAsync()];
+            return await _songs.FindAllAsync();
         }
 
         public async Task<Song> GetByIdAsync(Guid id)
@@ -33,12 +33,12 @@ namespace Vibe.WinUI.Infrastructure.Persistence
 
         public async Task<IEnumerable<Song>> GetFromArtistAsync(string artist)
         {
-            return [..await _songs.FindAsync(song => song.Artist == artist)];
+            return await _songs.FindAsync(song => song.Artist == artist);
         }
 
         public async Task<IEnumerable<Song>> GetFromCharsInTitle(string chars)
         {
-            return [.. await _songs.FindAsync(song => song.Title.Contains(chars, StringComparison.CurrentCultureIgnoreCase))];
+            return await _songs.FindAsync(song => song.Title.Contains(chars, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public async Task UpdateAsync(Song song)
