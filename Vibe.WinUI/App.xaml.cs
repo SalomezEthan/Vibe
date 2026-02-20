@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -11,6 +12,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Vibe.Core;
+using Vibe.WinUI.Composants;
+using Vibe.WinUI.Infrastructure;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -27,6 +31,13 @@ namespace Vibe.WinUI
     public partial class App : Application
     {
         private Window? _window;
+        
+        public IServiceProvider Provider = new ServiceCollection()
+            .AddComposants()
+            .AddInfrastructure()
+            .AddCore()
+            .AddSingleton<MainWindow>()
+            .BuildServiceProvider();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -43,7 +54,7 @@ namespace Vibe.WinUI
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            _window = new MainWindow();
+            _window = Provider.GetRequiredService<MainWindow>();
             _window.Activate();
         }
     }
